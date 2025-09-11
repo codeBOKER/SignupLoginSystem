@@ -1,0 +1,55 @@
+### Create User (POST)
+POST http://127.0.0.1:8000/account/
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "testpass123"
+}
+
+###
+
+### List Users - Unauthenticated (GET) - Should return 401
+GET http://127.0.0.1:8000/account/
+
+###
+
+### List Users - Authenticated (GET)
+GET http://127.0.0.1:8000/account/
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+###
+
+### Get User Detail - Authenticated (GET)
+GET http://127.0.0.1:8000/account/1/
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+###
+
+### Update User - Owner (PUT)
+PUT http://127.0.0.1:8000/account/1/
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "username": "updateduser",
+  "email": "updated@example.com"
+}
+
+###
+
+### Delete User - Owner (DELETE)
+DELETE http://127.0.0.1:8000/account/1/
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+
+###
+
+### Update User - Not Owner (PUT) - Should return 403
+PUT http://127.0.0.1:8000/account/2/
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "username": "hackuser"
+}

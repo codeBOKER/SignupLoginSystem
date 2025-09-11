@@ -1,0 +1,47 @@
+### Variables
+@baseUrl = http://127.0.0.1:8000
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3MzUxNTY0LCJpYXQiOjE3NTczNDc5NjQsImp0aSI6IjE0NzI4Y2RjMGQ3NjRhOGM5NWExYzZiNzA4ZDhjMDY1IiwidXNlcl9pZCI6MX0.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjA1MDY5LCJpYXQiOjE3NTc2MDE0NjksImp0aSI6IjExNzU5MjAyODBlZTQ2MDc5NmRkYTI5MGRhYWJmOWNkIiwidXNlcl9pZCI6M30.1cBQzcTVNj47pzhSmPZ0P5n3_C2MNyG3uHm2jbvqX-4"
+
+
+### Get JWT Token
+POST {{baseUrl}}/api/token/
+Content-Type: application/json
+
+{
+    "username": "username",
+    "password": "password"
+}
+
+### Refresh Token
+POST {{baseUrl}}/api/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "your_refresh_token_here"
+}
+
+### Verify Token
+POST {{baseUrl}}/api/token/verify/
+Content-Type: application/json
+
+{
+    "token": "{{token}}"
+}
+
+### Test Account Endpoints (replace with your actual endpoints)
+GET {{baseUrl}}/accounts/
+Authorization: Bearer {{token}}
+
+### Create Account (example)
+POST {{baseUrl}}/accounts/
+Content-Type: application/json
+
+{
+    "username": "testuser2",
+    "email": "test2@example.com",
+    "password": "test2pass123"
+}
+
+### test get a user
+GET {{baseUrl}}/accounts/3
+Authorization: Bearer {{token}}
