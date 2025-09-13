@@ -13,7 +13,10 @@ class UsersList(mixins.ListModelMixin,
                   generics.GenericAPIView):
     queryset = User.objects.all()
     permission_classes = [AllowAny]
-    serializer_class = PublicUserSerializer
+    def get_serializer_class(self):
+        if self.request.user.is_staff:
+            return PrivateUserSerializer
+        return PublicUserSerializer
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:

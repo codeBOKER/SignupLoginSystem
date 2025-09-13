@@ -1,36 +1,36 @@
 ### Variables
 @baseUrl = http://127.0.0.1:8000
-@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3MzUxNTY0LCJpYXQiOjE3NTczNDc5NjQsImp0aSI6IjE0NzI4Y2RjMGQ3NjRhOGM5NWExYzZiNzA4ZDhjMDY1IiwidXNlcl9pZCI6MX0.eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjA1MDY5LCJpYXQiOjE3NTc2MDE0NjksImp0aSI6IjExNzU5MjAyODBlZTQ2MDc5NmRkYTI5MGRhYWJmOWNkIiwidXNlcl9pZCI6M30.1cBQzcTVNj47pzhSmPZ0P5n3_C2MNyG3uHm2jbvqX-4"
+@token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjIwMDgzLCJpYXQiOjE3NTc2MTY0ODMsImp0aSI6IjljZTYyZjU2Y2Y1ZDQ5OTZiOWUyZWEyNjNlNThiMDliIiwidXNlcl9pZCI6MX0.6fjshP9LFuVCG837-BC1iHwuPQIw5Z8IFIBOcfUnE0Q"
 
 
 ### Get JWT Token
-POST {{baseUrl}}/api/token/
+POST {{baseUrl}}/accounts/token/
 Content-Type: application/json
 
 {
-    "username": "username",
-    "password": "password"
+    "username": "testuser2",
+    "password": "test2pass123"
 }
 
 ### Refresh Token
-POST {{baseUrl}}/api/token/refresh/
+POST {{baseUrl}}/accounts/token-refresh/
 Content-Type: application/json
 
 {
-    "refresh": "your_refresh_token_here"
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1ODIyMTg0OSwiaWF0IjoxNzU3NjE3MDQ5LCJqdGkiOiI0NGI0YWFhMmFhODc0NjMwOTI2MjQ3ZTdhZTlmZGIzNiIsInVzZXJfaWQiOjN9.TpynhWTJCZar6BqrdHB5MXN_B2F89R-IhDE49C6KrlQ"
 }
 
 ### Verify Token
-POST {{baseUrl}}/api/token/verify/
+POST {{baseUrl}}/accounts/token-verify/
 Content-Type: application/json
 
 {
-    "token": "{{token}}"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjIwNjY5LCJpYXQiOjE3NTc2MTcwNDksImp0aSI6Ijk4NzkyYjFiODhiZjQ5YzBhOTM3YmYzYzJlYTA2MWIzIiwidXNlcl9pZCI6M30.7AHv9PMtcqs5nRUykCao6gl19eNgWwoBSa15gm0Pu5A"
 }
 
 ### Test Account Endpoints (replace with your actual endpoints)
 GET {{baseUrl}}/accounts/
-Authorization: Bearer {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjIwMTkyLCJpYXQiOjE3NTc2MTY0ODMsImp0aSI6IjJiOWMyN2ZkMTJmZDQzYjdhMzJmNDA3N2QwZDg5ZGIwIiwidXNlcl9pZCI6MX0.sDd3tg7N-0Cr4WmL82WsEsay7HiIALjovsGDjWZ3TrY
 
 ### Create Account (example)
 POST {{baseUrl}}/accounts/
@@ -44,4 +44,9 @@ Content-Type: application/json
 
 ### test get a user
 GET {{baseUrl}}/accounts/3
-Authorization: Bearer {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjIwMDgzLCJpYXQiOjE3NTc2MTY0ODMsImp0aSI6IjljZTYyZjU2Y2Y1ZDQ5OTZiOWUyZWEyNjNlNThiMDliIiwidXNlcl9pZCI6MX0.6fjshP9LFuVCG837-BC1iHwuPQIw5Z8IFIBOcfUnE0Q
+
+### test rest password
+GET {{baseUrl}}/accounts/password-reset/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjIwMDgzLCJpYXQiOjE3NTc2MTY0ODMsImp0aSI6IjljZTYyZjU2Y2Y1ZDQ5OTZiOWUyZWEyNjNlNThiMDliIiwidXNlcl9pZCI6MX0.6fjshP9LFuVCG837-BC1iHwuPQIw5Z8IFIBOcfUnE0Q
+
