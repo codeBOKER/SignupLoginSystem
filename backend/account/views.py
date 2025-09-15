@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from account.serializers import PublicUserSerializer, PrivateUserSerializer
-from account.permissions import IsOwnerOrAdmin
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
@@ -35,30 +34,21 @@ class UsersList(mixins.ListModelMixin,
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class UserDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
-    queryset = User.objects.all()
+class UserMe(mixins.RetrieveModelMixin,
+             mixins.UpdateModelMixin,
+             mixins.DestroyModelMixin,
+             generics.GenericAPIView):
+    serializer_class = PrivateUserSerializer
     permission_classes = [IsAuthenticated]
-
-    def get_serializer_class(self):
-        user = self.get_object()
-        if self.request.user == user or self.request.user.is_staff:
-            return PrivateUserSerializer
-        return PublicUserSerializer
-
+    
+    def get_object(self):
+        return self.request.user
+    
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
-
+    
     def put(self, request, *args, **kwargs):
-        user = self.get_object()
-        if request.user == user or request.user.is_staff:
-            return self.update(request, *args, **kwargs)
-        return Response({'error': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
-
+        return self.partial_update(request, *args, **kwargs)
+    
     def delete(self, request, *args, **kwargs):
-        user = self.get_object()
-        if request.user == user or request.user.is_staff:
-            return self.destroy(request, *args, **kwargs)
-        return Response({'error': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
+        return self.destroy(request, *args, **kwargs)

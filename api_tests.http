@@ -43,10 +43,24 @@ Content-Type: application/json
 }
 
 ### test get a user
-GET {{baseUrl}}/accounts/3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjIwMDgzLCJpYXQiOjE3NTc2MTY0ODMsImp0aSI6IjljZTYyZjU2Y2Y1ZDQ5OTZiOWUyZWEyNjNlNThiMDliIiwidXNlcl9pZCI6MX0.6fjshP9LFuVCG837-BC1iHwuPQIw5Z8IFIBOcfUnE0Q
+PUT {{baseUrl}}/accounts/me/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3ODc3MjkyLCJpYXQiOjE3NTc4NzM2OTIsImp0aSI6IjIwYmNlYjU3YTAyZjQ3ZTQ4NDk0MWFmNzdkNDliMjIzIiwidXNlcl9pZCI6M30.QOD0zLR6zaMpG7_tWu7ABrvbyTh3C0xRf-JMK4teZ3c
+
+{
+    "first_name": "first name test",
+    "last_name": "last name test"
+}
 
 ### test rest password
 GET {{baseUrl}}/accounts/password-reset/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NjIwMDgzLCJpYXQiOjE3NTc2MTY0ODMsImp0aSI6IjljZTYyZjU2Y2Y1ZDQ5OTZiOWUyZWEyNjNlNThiMDliIiwidXNlcl9pZCI6MX0.6fjshP9LFuVCG837-BC1iHwuPQIw5Z8IFIBOcfUnE0Q
+
+### test /me endpoint
+GET {{baseUrl}}/accounts/me/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3ODc1Nzg3LCJpYXQiOjE3NTc4NzIxODcsImp0aSI6IjM1NGI4OGRjZWI1MjRlMjE5ZmRiNjVhYWQ0ZTMyN2VlIiwidXNlcl9pZCI6M30.Txl55n3s6mBkv63m7z_C5K9VkUH8SopuDbT-AQuwWVM
+
+### delte a user
+DELETE {{baseUrl}}/accounts/me/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3ODc1Nzg3LCJpYXQiOjE3NTc4NzIxODcsImp0aSI6IjM1NGI4OGRjZWI1MjRlMjE5ZmRiNjVhYWQ0ZTMyN2VlIiwidXNlcl9pZCI6M30.Txl55n3s6mBkv63m7z_C5K9VkUH8SopuDbT-AQuwWVM
 
